@@ -39,14 +39,14 @@ const MOODS = {
 };
 
 const MENU_ITEMS = [
-  { id: 1, name: 'Двойной Эспрессо', price: 450, category: 'coffee', image: '☕', description: 'Насыщенный и бодрящий' },
-  { id: 2, name: 'Капучино Grande', price: 750, category: 'coffee', image: '🥛', description: 'Классика с пенкой' },
-  { id: 3, name: 'Матча Латте', price: 950, category: 'coffee', image: '🍵', description: 'Японский зеленый чай' },
-  { id: 4, name: 'Круассан с миндалем', price: 650, category: 'bakery', image: '🥐', description: 'Свежая выпечка' },
-  { id: 5, name: 'Чизкейк Нью-Йорк', price: 1200, category: 'dessert', image: '🍰', description: 'Кремовый десерт' },
-  { id: 6, name: 'Авокадо Тост', price: 1500, category: 'food', image: '🥑', description: 'ЗОЖ завтрак' },
-  { id: 7, name: 'Ягодный смузи', price: 1100, category: 'drinks', image: '🥤', description: 'Свежие ягоды' },
-  { id: 8, name: 'Тирамису', price: 1300, category: 'dessert', image: '🍮', description: 'Итальянский десерт' },
+  { id: 1, name: 'Двойной Эспрессо', price: 450, category: 'coffee', image: 'https://images.unsplash.com/photo-1581968627456-7537f3a55584?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGVzcHJlc3NvfGVufDB8fDB8fHww', description: 'Насыщенный и бодрящий' },
+  { id: 2, name: 'Капучино Grande', price: 750, category: 'coffee', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80', description: 'Классика с пенкой' },
+  { id: 3, name: 'Матча Латте', price: 950, category: 'coffee', image: 'https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=500&q=80', description: 'Японский зеленый чай' },
+  { id: 4, name: 'Круассан с миндалем', price: 650, category: 'bakery', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=500&q=80', description: 'Свежая выпечка' },
+  { id: 5, name: 'Чизкейк Нью-Йорк', price: 1200, category: 'dessert', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80', description: 'Кремовый десерт' },
+  { id: 6, name: 'Авокадо Тост', price: 1500, category: 'food', image: 'https://plus.unsplash.com/premium_photo-1691090282768-380cc3e34b23?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXZvY2FkbyUyMHRvYXN0fGVufDB8fDB8fHww', description: 'ЗОЖ завтрак' },
+  { id: 7, name: 'Ягодный смузи', price: 1100, category: 'drinks', image: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=500&q=80', description: 'Свежие ягоды' },
+  { id: 8, name: 'Тирамису', price: 1300, category: 'dessert', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=80', description: 'Итальянский десерт' },
 ];
 
 const CATEGORIES = [
@@ -240,11 +240,12 @@ const ProductCard = memo(({ item, onAddToCart, theme }) => (
     className="group glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col"
     role="article"
   >
-    <div 
-      className="text-6xl mb-4 transform group-hover:scale-110 transition duration-500 self-center"
-      aria-hidden="true"
-    >
-      {item.image}
+    <div className="h-48 w-full mb-4 overflow-hidden rounded-xl relative">
+      <img 
+        src={item.image} 
+        alt={item.name}
+        className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700"
+      />
     </div>
     
     <div className="flex-1">
@@ -276,7 +277,8 @@ ProductCard.displayName = 'ProductCard';
 
 const CartItem = memo(({ item, onUpdateQuantity, onRemove }) => (
   <div className="flex items-center gap-4 bg-gray-50 p-3 rounded-xl">
-    <span className="text-2xl" aria-hidden="true">{item.image}</span>
+    
+    <img src={item.image} alt={item.name} className="w-16 h-16 rounded-lg object-cover shadow-sm" />
     
     <div className="flex-1 min-w-0">
       <h4 className="font-semibold text-sm truncate">{item.name}</h4>
